@@ -34,7 +34,6 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories: [Video walkthrough](http://i.imgur.com/pCAOhwy.gif)
 
 <img alt="" height="650" src="http://i.imgur.com/pCAOhwy.gif" width="320" /> 
 
