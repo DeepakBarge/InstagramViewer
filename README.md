@@ -7,7 +7,7 @@
 <img src="http://imgur.com/0WBKyRq.png" alt="Screen Demo" width="350" />
 <img src="http://imgur.com/ufOaAF4.png" alt="Screen Demo" width="350" />
 &nbsp;
-<img src="http://imgur.com/uNhFaTG.png" alt="Screen Demo" width="350" />
+<img src="http://imgur.com/kf5ZO3K.png" alt="Screen Demo" width="350" />
 
 Time spent: **10** hours spent in total
 
