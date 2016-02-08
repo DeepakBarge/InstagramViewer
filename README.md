@@ -32,7 +32,11 @@ The following **additional** features are implemented:
 
 * [ ] List anything else that you can get done to improve the app functionality!
 
-![Video Walkthrough](demo.gif)
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories: [Video walkthrough](http://i.imgur.com/pCAOhwy.gif)
+
+<img alt="" height="650" src="http://i.imgur.com/HcnhVsc.gif" width="320" /> 
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
