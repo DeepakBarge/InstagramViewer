@@ -3,7 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.deepak.instagramviewer.FeedActivity">
+    tools:context="com.example.deepak.instagramviewer.FeedActivity"
+    android:background="#000000">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/toolbar_main">
+    </include>
 
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

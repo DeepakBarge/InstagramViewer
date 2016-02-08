@@ -17,6 +17,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".VideoPlayActivity"
+            android:configChanges="orientation|screenSize">
+        </activity>
+
+        <activity
+            android:name=".ViewAllCommentsActivity"
+            android:configChanges="orientation|screenSize">
+        </activity>
+
     </application>
 
 </manifest>

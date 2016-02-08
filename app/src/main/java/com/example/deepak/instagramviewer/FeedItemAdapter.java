@@ -1,27 +1,44 @@
 package com.example.deepak.instagramviewer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.MediaController;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.VideoView;
-
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
-
 import java.util.ArrayList;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-/**
- * Created by deepak on 2/3/16.
- */
 public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
+
+    private Context context;
+    static class ViewHolder {
+
+        @Bind(R.id.username) TextView username;
+        @Bind(R.id.caption) TextView caption;
+        @Bind(R.id.likeCount) TextView likeCount;
+        @Bind(R.id.feedImage) ImageView feedImage;
+        @Bind(R.id.profileImage) ImageView profileImage;
+        @Bind(R.id.playImage) ImageView playImage;
+        @Bind(R.id.timestamp) TextView relativeTimestamp;
+        @Bind(R.id.viewAllComments) TextView viewAllComments;
+
+        //@Bind(R.id.commentsLayout) LinearLayout commentsLayout;
+        //@Bind(R.layout.item_comment) LinearLayout itemComment;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+
+    }
 
     static Transformation transformation = new RoundedTransformationBuilder()
             .borderColor(Color.GRAY)
@@ -32,72 +49,88 @@ public class FeedItemAdapter extends ArrayAdapter<FeedItem> {
 
     public FeedItemAdapter(Context context, ArrayList<FeedItem> feedItems) {
         super(context, 0, feedItems);
+        this.context = context;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        FeedItem fItem = getItem(position);
+        final FeedItem fItem = getItem(position);
+
+        ViewHolder viewHolder;
 
         if(convertView == null){
-            //convertView = LayoutInflater.from(getContext()).inflate(R.layout.feed_item, parent, false);
-            /*if(fItem.mediaType.equalsIgnoreCase("image")) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.temp_item, parent, false);
-
-                ImageView feedImage = (ImageView) convertView.findViewById(R.id.feedImage);
-
-                feedImage.setImageResource(0);
-
-                Picasso.with(getContext())
-                        .load(fItem.imageUrl)
-                        .into(feedImage);
-
-            } else {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.temp_item_video, parent, false);
-
-                final VideoView mVideoView = (VideoView) convertView.findViewById(R.id.videoView);
-                mVideoView.setVideoPath(fItem.videoUrl);
-                MediaController mediaController = new MediaController(getContext());
-                mediaController.setAnchorView(mVideoView);
-                mVideoView.setMediaController(mediaController);
-                mVideoView.requestFocus();
-                mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    // Close the progress bar and play the video
-                    public void onPrepared(MediaPlayer mp) {
-                        mVideoView.start();
-                    }
-                });
-
-            }*/
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.temp_item, parent, false);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        TextView username = (TextView) convertView.findViewById(R.id.username);
-        username.setText(fItem.username);
+        viewHolder.viewAllComments.setOnClickListener(new View.OnClickListener() {
 
-        TextView caption = (TextView) convertView.findViewById(R.id.caption);
-        caption.setText(fItem.caption);
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ViewAllCommentsActivity.class);
+                i.putExtra("item", fItem);
+                context.startActivity(i);
+            }
+        });
 
-        TextView likeCount = (TextView) convertView.findViewById(R.id.likeCount);
-        likeCount.setText(String.valueOf(fItem.likeCount));
+        viewHolder.username.setText(fItem.username);
 
-        ImageView feedImage = (ImageView) convertView.findViewById(R.id.feedImage);
+        viewHolder.caption.setText(fItem.caption);
 
-        feedImage.setImageResource(0);
+        viewHolder.likeCount.setText(String.valueOf(fItem.likeCount));
+
+        viewHolder.feedImage.setImageResource(0);
 
         Picasso.with(getContext())
                 .load(fItem.imageUrl)
-                .into(feedImage);
+                .into(viewHolder.feedImage);
 
-        ImageView profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
+        viewHolder.profileImage.setImageResource(0);
 
-        profileImage.setImageResource(0);
-
-        //set placeholder images
         Picasso.with(getContext())
                 .load(fItem.profilePictureUrl)
                 .transform(transformation)
-                .into(profileImage);
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
+                .into(viewHolder.profileImage);
+
+        viewHolder.relativeTimestamp.setText(fItem.relativeTimestampString);
+
+        if(fItem.mediaType == FeedItem.IMAGE){
+            viewHolder.playImage.setVisibility(View.INVISIBLE);
+        } else {
+            viewHolder.playImage.setVisibility(View.VISIBLE);
+        }
+
+        LinearLayout commentList = (LinearLayout) convertView.findViewById(R.id.commentsLayout);
+        commentList.removeAllViews();
+
+        //display only top 2 comments
+        for(int i=0; i<2 && fItem.comments.size() >= 2; i++){
+            Comment comment = fItem.comments.get(i);
+            View v = LayoutInflater.from(getContext()).inflate(R.layout.item_comment, null);
+
+            ImageView img = (ImageView) v.findViewById(R.id.userImage);
+            Picasso.with(getContext())
+                    .load(comment.profilePictureUrl)
+                    .resize(150, 150)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.error)
+                    .transform(transformation)
+                    .into(img);
+
+            TextView txtUsername = (TextView) v.findViewById(R.id.userName);
+            txtUsername.setText(comment.username);
+
+            TextView txtComment = (TextView) v.findViewById(R.id.userComment);
+            txtComment.setText(comment.commentText);
+            commentList.addView(v);
+        }
 
         return convertView;
     }
