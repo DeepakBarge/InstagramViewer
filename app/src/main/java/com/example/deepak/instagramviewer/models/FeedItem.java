@@ -1,4 +1,4 @@
-package com.example.deepak.instagramviewer;
+package com.example.deepak.instagramviewer.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,11 +21,4 @@ public class FeedItem implements Serializable {
     public ArrayList<Comment> comments = new ArrayList<>();
 
     public FeedItem(){}
-}
-
-class Comment implements Serializable{
-
-    public String username;
-    public String commentText;
-    public String profilePictureUrl;
 }

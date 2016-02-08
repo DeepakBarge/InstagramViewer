@@ -1,4 +1,4 @@
-package com.example.deepak.instagramviewer;
+package com.example.deepak.instagramviewer.activities;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.MediaController;
 import android.widget.VideoView;
+
+import com.example.deepak.instagramviewer.R;
 
 public class VideoPlayActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
 

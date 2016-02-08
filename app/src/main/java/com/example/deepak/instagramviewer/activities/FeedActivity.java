@@ -1,4 +1,4 @@
-package com.example.deepak.instagramviewer;
+package com.example.deepak.instagramviewer.activities;
 
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,11 +9,17 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+import com.example.deepak.instagramviewer.models.Comment;
+import com.example.deepak.instagramviewer.models.FeedItem;
+import com.example.deepak.instagramviewer.adapters.FeedItemAdapter;
+import com.example.deepak.instagramviewer.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
@@ -164,7 +170,8 @@ public class FeedActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                //do error handling
+                Toast.makeText(getApplicationContext(), "Unable to connect to Instagram. " +
+                        "Check your n/w connection. Try again later", Toast.LENGTH_SHORT).show();
             }
         });
 

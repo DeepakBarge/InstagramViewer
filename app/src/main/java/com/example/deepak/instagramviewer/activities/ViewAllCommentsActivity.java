@@ -1,4 +1,4 @@
-package com.example.deepak.instagramviewer;
+package com.example.deepak.instagramviewer.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.example.deepak.instagramviewer.models.Comment;
+import com.example.deepak.instagramviewer.models.FeedItem;
+import com.example.deepak.instagramviewer.R;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
