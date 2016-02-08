@@ -34,8 +34,9 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
+Here's a walkthrough of implemented user stories: [Video walkthrough](http://i.imgur.com/pCAOhwy.gif)
 
-<img alt="" height="650" src="http://i.imgur.com/pCAOhwy.gif" width="320" /> 
+<img alt="" height="560" src="http://i.imgur.com/pCAOhwy.gif" width="280" /> 
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
