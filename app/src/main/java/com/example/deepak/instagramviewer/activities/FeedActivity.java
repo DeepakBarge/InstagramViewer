@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 import com.example.deepak.instagramviewer.models.Comment;
 import com.example.deepak.instagramviewer.models.FeedItem;
@@ -22,6 +21,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class FeedActivity extends AppCompatActivity {
 
@@ -30,7 +30,7 @@ public class FeedActivity extends AppCompatActivity {
     ArrayList<FeedItem> feedItems;
     FeedItemAdapter adapter;
     SwipeRefreshLayout swipeContainer;
-    ListView lvFeeds;
+    StickyListHeadersListView lvFeeds;
     Toolbar toolbar;
 
     @Override
@@ -43,7 +43,7 @@ public class FeedActivity extends AppCompatActivity {
         toolbar.setLogo(R.drawable.ic_appicon);
         getSupportActionBar().setTitle("InstaPicViewer");
 
-        lvFeeds = (ListView) findViewById(R.id.lvFeedList);
+        lvFeeds = (StickyListHeadersListView) findViewById(R.id.lvFeedList);
 
         feedItems = new ArrayList<>();
         adapter = new FeedItemAdapter(this, feedItems);
@@ -164,6 +164,7 @@ public class FeedActivity extends AppCompatActivity {
                 } catch (JSONException e){
                     e.printStackTrace();
                 }
+                adapter.addAll(feedItems);
                 swipeContainer.setRefreshing(false);
                 adapter.notifyDataSetChanged();
             }

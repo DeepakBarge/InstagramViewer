@@ -2,41 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
     android:background="#bebcbc">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileImage"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@android:mipmap/sym_def_app_icon"
-        android:layout_marginLeft="10dp"
-        android:maxWidth="50dp"
-        android:maxHeight="50dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="dbarge"
-        android:id="@+id/username"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/profileImage"
-        android:layout_toEndOf="@+id/profileImage"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="14sp"
-        android:typeface="sans"
-        android:textColor="#1a1e68"
-        android:textStyle="bold" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_below="@+id/profileImage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/overlap">
@@ -59,31 +30,6 @@
             android:layout_gravity="center"
             android:src="@drawable/play" />
     </FrameLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12h ago"
-        android:id="@+id/timestamp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:textSize="10sp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timeImage"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/timestamp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="2dp"
-        android:minHeight="5dp"
-        android:maxHeight="10dp"
-        android:maxWidth="10dp"
-        android:src="@drawable/time" />
 
     <ImageView
         android:layout_width="wrap_content"

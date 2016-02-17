@@ -35,4 +35,7 @@ dependencies {
 
     // annotation library
     compile 'com.jakewharton:butterknife:7.0.1'
+
+    compile 'se.emilsjolander:stickylistheaders:2.1.5'
+
 }
